@@ -1,5 +1,6 @@
 import addEventLister from '../src/';
 import expect from 'expect.js';
+import simulateEvent from 'simulate-dom-event';
 
 describe('add-dom-event-listener', function () {
   it('works', function () {
@@ -13,10 +14,10 @@ describe('add-dom-event-listener', function () {
     });
     a.href = '#';
     document.body.appendChild(a);
-    a.click();
+    simulateEvent(a,'click');
     expect(count).to.be(1);
     handle.remove();
-    a.click();
+    simulateEvent(a,'click');
     expect(count).to.be(1);
   });
 });

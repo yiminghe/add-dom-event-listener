@@ -1,6 +1,6 @@
 {
   "name": "add-dom-event-listener",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "add dom event listener. normalize ie and others",
   "keywords": [
     "dom",

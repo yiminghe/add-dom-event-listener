@@ -6,7 +6,6 @@
 
 import EventBaseObject from './EventBaseObject';
 import assign from 'object-assign';
-const DOCUMENT = document;
 const TRUE = true;
 const FALSE = false;
 const commonProps = [
@@ -140,7 +139,7 @@ const eventNormalizers = [
 
       // Calculate pageX/Y if missing and clientX/Y available
       if (target && isNullOrUndefined(event.pageX) && !isNullOrUndefined(nativeEvent.clientX)) {
-        eventDoc = target.ownerDocument || DOCUMENT;
+        eventDoc = target.ownerDocument || document;
         doc = eventDoc.documentElement;
         body = eventDoc.body;
         event.pageX = nativeEvent.clientX +
@@ -231,7 +230,7 @@ function DomEventObject(nativeEvent) {
 
   // fix target property, if necessary
   if (!this.target && isNative) {
-    this.target = nativeEvent.srcElement || DOCUMENT; // srcElement might not be defined either
+    this.target = nativeEvent.srcElement || document; // srcElement might not be defined either
   }
 
   // check if target is a text node (safari)

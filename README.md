@@ -30,4 +30,5 @@ var handler = addEventListener(document.body, 'click', function(e){
   
   console.log(e.nativeEvent); // native dom event
 });
+handler.remove(); // detach event listener
 ```

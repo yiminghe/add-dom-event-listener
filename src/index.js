@@ -14,10 +14,10 @@ export default function addEventListener(target, eventType, callback) {
       },
     };
   } else if (target.attachEvent) {
-    target.attachEvent('on' + eventType, wrapCallback);
+    target.attachEvent(`on${eventType}`, wrapCallback);
     return {
       remove() {
-        target.detachEvent('on' + eventType, wrapCallback);
+        target.detachEvent(`on${eventType}`, wrapCallback);
       },
     };
   }

@@ -25,7 +25,8 @@ const eventNormalizers = [
     props: ['char', 'charCode', 'key', 'keyCode', 'which'],
     fix(event, nativeEvent) {
       if (isNullOrUndefined(event.which)) {
-        event.which = !isNullOrUndefined(nativeEvent.charCode) ? nativeEvent.charCode : nativeEvent.keyCode;
+        event.which = !isNullOrUndefined(nativeEvent.charCode) ?
+          nativeEvent.charCode : nativeEvent.keyCode;
       }
 
       // add metaKey to non-Mac browsers (use ctrl for PC 's and Meta for Macs)

@@ -1,16 +1,24 @@
 import EventObject from './EventObject';
 
-export default function addEventListener(target, eventType, callback) {
+export default function addEventListener(target, eventType, callback, option) {
   function wrapCallback(e) {
     const ne = new EventObject(e);
     callback.call(target, ne);
   }
 
   if (target.addEventListener) {
-    target.addEventListener(eventType, wrapCallback, false);
+    let useCapture = false;
+    if (typeof option === 'object') {
+      useCapture = option.capture || false;
+    } else if (typeof option === 'boolean') {
+      useCapture = option;
+    }
+
+    target.addEventListener(eventType, wrapCallback, option || false);
+
     return {
       remove() {
-        target.removeEventListener(eventType, wrapCallback, false);
+        target.removeEventListener(eventType, wrapCallback, useCapture);
       },
     };
   } else if (target.attachEvent) {

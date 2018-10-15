@@ -7,10 +7,18 @@ export default function addEventListener(target, eventType, callback, option) {
   }
 
   if (target.addEventListener) {
+    let useCapture = false;
+    if (typeof option === 'object') {
+      useCapture = option.capture || false;
+    } else if (typeof option === 'boolean') {
+      useCapture = option;
+    }
+
     target.addEventListener(eventType, wrapCallback, option || false);
+
     return {
       remove() {
-        target.removeEventListener(eventType, wrapCallback, option || false);
+        target.removeEventListener(eventType, wrapCallback, useCapture);
       },
     };
   } else if (target.attachEvent) {

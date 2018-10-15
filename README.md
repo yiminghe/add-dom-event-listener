@@ -32,3 +32,9 @@ var handler = addEventListener(document.body, 'click', function(e){
 });
 handler.remove(); // detach event listener
 ```
+
+## history
+
+### 1.1.0
+
+- allow event options
